@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-android:background="@drawable/loginlogo"
+    android:background="@drawable/watermark"
     >
 
     <LinearLayout
@@ -13,7 +13,7 @@ android:background="@drawable/loginlogo"
         android:layout_height="wrap_content"
 
         android:orientation="vertical">
-        <!--        android:background="@drawable/calendar_bg_shape"-->
+
 
         <LinearLayout
             android:id="@+id/header"
@@ -191,19 +191,5 @@ android:background="@drawable/loginlogo"
             android:progress="25"
             android:visibility="gone" />
     </LinearLayout>
-   <!-- <TextView
-        android:id="@+id/textviewScroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:text="In case any Due date or hoiday please work on before day"
-        android:textAlignment="center"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:fadingEdge="horizontal"
-        android:layout_alignParentBottom="true"
-    android:layout_marginTop="@dimen/margin_10dp"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:textColor="@color/red" />-->
 </RelativeLayout>
