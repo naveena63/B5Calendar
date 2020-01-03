@@ -369,7 +369,10 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
             mListener.onClick(v, getAdapterPosition());
         }
     }
-
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 }
 
 
