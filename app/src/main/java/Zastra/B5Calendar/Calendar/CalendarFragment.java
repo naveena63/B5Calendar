@@ -59,17 +59,17 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
     TextView tv_month, tv_year;
     PrefManager prefManager;
     View view;
-RecyclerViewListener listener;
+    RecyclerViewListener listener;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        requestQueue=Volley.newRequestQueue(getActivity());
+        requestQueue = Volley.newRequestQueue(getActivity());
         prefManager = new PrefManager(getContext());
 
-      //declartn
+        //declartn
         my_recycler_view = view.findViewById(R.id.recyclerView);
         Ib_next = view.findViewById(R.id.Ib_next);
         tv_month = view.findViewById(R.id.tv_month);
@@ -98,9 +98,9 @@ RecyclerViewListener listener;
         my_recycler_view.addItemDecoration(itemDecor2);
         my_recycler_view.setHasFixedSize(true);
         RecyclerViewListener listener = (view, position) -> {
-           // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
         };
-        dateadapter = new DateAdapter(getContext(), allSampleData, type,listener);
+        dateadapter = new DateAdapter(getContext(), allSampleData, type, listener);
         eventADapter = new EventAdapter(getContext(), eventModelList, listener);
 
 
@@ -276,7 +276,7 @@ RecyclerViewListener listener;
                             for (int j = 0; j < jsonArray1.length(); j++) {
                                 JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
                                 String eventName = jsonObject2.getString("event_short");
-                             /*   String eventColor = jsonObject2.getString("color_code");*/
+                                /*   String eventColor = jsonObject2.getString("color_code");*/
                                 Log.e("color", eventColor);
                                 eventModelList.add(new EventModel(eventName, eventColor));
 
@@ -288,7 +288,7 @@ RecyclerViewListener listener;
                         my_recycler_view.setAdapter(dateadapter);
 
                         dateadapter.notifyDataSetChanged();
-                     my_recycler_view.setFocusable(false);
+                        my_recycler_view.setFocusable(false);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

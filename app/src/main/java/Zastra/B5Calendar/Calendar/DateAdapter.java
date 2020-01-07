@@ -90,7 +90,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
 
     @Override
     public void onBindViewHolder(ItemRowHolder itemRowHolder, final int i) {
-
+        itemRowHolder.setIsRecyclable(false);
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
