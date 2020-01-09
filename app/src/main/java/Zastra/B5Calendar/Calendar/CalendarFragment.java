@@ -270,13 +270,13 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                             DateModel dateModel = new DateModel();
                             String date = json.getString("event_date");
                             dateModel.setCalendarDate(date);
-                            String eventColor = json.getString("color_code");
+
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();
                             for (int j = 0; j < jsonArray1.length(); j++) {
                                 JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
                                 String eventName = jsonObject2.getString("event_short");
-                                /*   String eventColor = jsonObject2.getString("color_code");*/
+                                  String eventColor = jsonObject2.getString("color_code");
                                 Log.e("color", eventColor);
                                 eventModelList.add(new EventModel(eventName, eventColor));
 
