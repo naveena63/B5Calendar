@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:717228629251:android:63c99561eb37e566a61d36",
         "android_client_info": {
-          "package_name": "Zastra.b5calendar"
+          "package_name": "zastraitsolutions.b5calendar"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "717228629251-ceoe16lccn40qp5nqjq5ue6n3uhc575g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "Zastra.b5calendar",
+            "package_name": "zastraitsolutions.b5calendar",
             "certificate_hash": "42c1484133200c4a904f7f8b11ffc0cb860519b0"
           }
         },

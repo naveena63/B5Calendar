@@ -22,7 +22,7 @@
         android:orientation="vertical">
 
 
-        <Zastra.B5Calendar.Utils.CustomTextViewNormal
+        <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
             android:id="@+id/eventNme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
 
             />
 
-        <Zastra.B5Calendar.Utils.CustomTextViewNormal
+        <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
             android:id="@+id/eventDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

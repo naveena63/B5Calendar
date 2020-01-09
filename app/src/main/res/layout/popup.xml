@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
    android:background="@drawable/popup_background"
     android:orientation="vertical"
-    tools:context="Zastra.B5Calendar.SettingsMenu.HelpActivity">
+    tools:context="zastraitsolutions.B5Calendar.SettingsMenu.HelpActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,7 +17,7 @@
             android:orientation="vertical"
             >
 
-            <Zastra.B5Calendar.Utils.CustomTextViewNormal
+            <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
                 android:id="@+id/eventDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
