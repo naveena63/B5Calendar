@@ -1,3 +1,3 @@
-keystore path: D:\b5\B5Calendar\app\B5.jks
-password:b5@123456 B5@12345
-alias:b5calendar
+keystore path: D:\android projects\B5Calendar\app\B5.jks
+password: B5@12345
+alias:b5
