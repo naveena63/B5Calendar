@@ -1,0 +1,3 @@
+keystore path: D:\b5\B5Calendar\app\B5.jks
+password:b5@123456
+alias:b5calendar
