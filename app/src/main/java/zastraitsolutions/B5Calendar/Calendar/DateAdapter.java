@@ -207,7 +207,8 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
                             Button dialogButton = (Button) dialog.findViewById(R.id.btnClose);
                             dialogButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(View v) {
+                                public void onClick(View v)
+                                {
                                     dialog.dismiss();
                                 }
                             });
@@ -343,7 +344,6 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     public int getItemCount() {
         return (null != dataList ? dataList.size() : 0);
     }
-
     public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private RecyclerViewListener mListener;
         protected RecyclerView recycler_view_list;
@@ -356,12 +356,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
             view.setOnClickListener(this);
             recycler_view_list = (RecyclerView) view.findViewById(R.id.eventRecyclerView);
 
-
-
-
-
     }
-
         @Override
         public void onClick(View v) {
             mListener.onClick(v, getAdapterPosition());

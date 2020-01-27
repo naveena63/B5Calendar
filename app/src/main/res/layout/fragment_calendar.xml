@@ -182,14 +182,7 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:progress="25"
-            android:visibility="gone" />
+
     </LinearLayout>
 
 </RelativeLayout>
