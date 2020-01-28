@@ -1,4 +1,5 @@
 package zastraitsolutions.B5Calendar.Calendar;
+
 import android.os.Build;
 import android.os.Bundle;
 
@@ -54,7 +55,8 @@ public class MyCalendarFragment extends Fragment {
     String output = "";
     TextView tv_month, tv_year;
     PrefManager prefManager;
-    int type=1;
+    int type = 1;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 
     @Override
@@ -69,7 +71,7 @@ public class MyCalendarFragment extends Fragment {
         allSampleData = new ArrayList<DateModel>();
         eventModelList = new ArrayList<>();
 
-        requestQueue=Volley.newRequestQueue(getActivity());
+        requestQueue = Volley.newRequestQueue(getActivity());
         prefManager = new PrefManager(getContext());
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
@@ -82,8 +84,9 @@ public class MyCalendarFragment extends Fragment {
         };
 
         my_recycler_view.setHasFixedSize(true);
-        adapter = new DateAdapter(getContext(), allSampleData,type,listener);
+        adapter = new DateAdapter(getContext(), allSampleData, type, listener);
         eventADapter = new EventAdapter(getContext(), eventModelList, listener);
+
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 7);
         my_recycler_view.setLayoutManager(layoutManager);
@@ -157,8 +160,7 @@ public class MyCalendarFragment extends Fragment {
         ib_prev.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 allSampleData.clear();
                 eventModelList.clear();
 
@@ -233,15 +235,14 @@ public class MyCalendarFragment extends Fragment {
 
     private void getData() {
 
-        String url_formation = AppConstants.BASE_URL + AppConstants.MYCALENDAR + "date=" + output + "&type=month" + "&id_user=" +prefManager.getUserid();
-
+        String url_formation = AppConstants.BASE_URL + AppConstants.MYCALENDAR + "date=" + output + "&type=month" + "&id_user=" + prefManager.getUserid();
+        Log.i("userid", "" + prefManager.getUserid());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url_formation, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 Log.i("response", "response" + response);
                 try {
-
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     JSONObject jsonObject1 = jsonObject.getJSONObject("data");

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
@@ -84,9 +83,6 @@
             android:id="@+id/tableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
             android:paddingTop="6dp" >
 
             <TextView
@@ -94,75 +90,77 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
-                android:text="Sun"
-                android:background="@drawable/sun_shape"
-
-                android:textColor="@color/white" />
+                android:text="sun"
+                android:textColor="@color/red"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TextView05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Mon"
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/TextView04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Tue"
-
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/TextView03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Wed"
-
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Thu"
-
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TextView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Fri"
-
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/weeks_bg"
                 android:gravity="center"
                 android:text="Sat"
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#3F51B5"
+                android:textStyle="bold"/>
         </TableRow>
 
         <TextView
@@ -176,10 +174,10 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center"
             android:listSelector="@android:color/transparent"
             android:numColumns="7"
-            android:layout_marginBottom="5dp"
             android:textAlignment="gravity" >
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
