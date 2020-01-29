@@ -312,9 +312,7 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
 
                             }
                         }
-
                         my_recycler_view.setAdapter(dateadapter);
-
                         dateadapter.notifyDataSetChanged();
                         my_recycler_view.setFocusable(false);
                     }
