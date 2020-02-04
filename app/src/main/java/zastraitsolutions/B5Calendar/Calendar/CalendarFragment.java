@@ -198,12 +198,14 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
                         JSONObject json2 = jsonArray.getJSONObject(10);
                         inputdate = json2.getString("event_date");
+
                         System.out.println("inputdate" + inputdate);
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject json = jsonArray.getJSONObject(i);
                             DateModel dateModel = new DateModel();
                             String date = json.getString("event_date");
                             inputdate = date;
+
                             dateModel.setCalendarDate(inputdate);
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();

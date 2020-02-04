@@ -16,7 +16,6 @@ public class AppConstants {
     public static String GETCALENDER = "getcalendar?";
     public static String MYCALENDAR = "getusercalendar?";
     public static String postuserevent = "postuserevent";
-
     public static String CHANGEPASWRD = "changePassword";
     public static String UPDATEUSER = "postuser";
     public static String EDITEVENT = "postevent";

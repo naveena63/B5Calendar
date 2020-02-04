@@ -13,6 +13,7 @@ public class PrefManager {
     private static final String EVENTDATE = "date";
     private static final String DEVICE_ID = "deviceid";
     private static final String userid = "userid";
+    private static final String eventNamedate = "userid";
 
 
     public PrefManager(Context context) {
@@ -32,6 +33,7 @@ public class PrefManager {
         }
         editor.apply();
     }
+
     public boolean getBoolean(String key) {
         return pref.getBoolean(key, false);
     }
@@ -39,20 +41,25 @@ public class PrefManager {
     public String getAdminId() {
         return pref.getString(ADMIN_ID, "");
     }
+
     public void setAdminId(String adminId) {
         editor.putString(ADMIN_ID, adminId);
         editor.commit();
     }
- public String getEventname() {
+
+    public String getEventname() {
         return pref.getString(EVENTNAME, "");
     }
+
     public void setEventname(String eventname) {
         editor.putString(EVENTNAME, "");
         editor.commit();
     }
- public String getEventdate() {
+
+    public String getEventdate() {
         return pref.getString(EVENTDATE, "");
     }
+
     public void setEventdate(String eventdate) {
         editor.putString(EVENTDATE, "");
         editor.commit();
@@ -66,12 +73,22 @@ public class PrefManager {
         editor.putString(DEVICE_ID, deviceId);
         editor.commit();
     }
+
     public String getUserid() {
         return pref.getString(userid, "");
     }
 
     public void setUserid(String userid) {
         editor.putString(userid, userid);
+        editor.commit();
+    }
+
+    public String getEventNamedate() {
+        return pref.getString(eventNamedate, "");
+    }
+
+    public void setEventNamedate(String eventNamedate) {
+        editor.putString(eventNamedate, eventNamedate);
         editor.commit();
     }
 
@@ -83,6 +100,7 @@ public class PrefManager {
         editor.putString(TOKEN, token);
         editor.commit();
     }
+
     public void logout() {
         editor = pref.edit();
         editor.clear();

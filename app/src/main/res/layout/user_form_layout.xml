@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,25 +14,36 @@
         app:cardMaxElevation="2dp"
         app:cardUseCompatPadding="true"
         app:contentPadding="5sp">
-    <LinearLayout
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginLeft="@dimen/margin_10dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:id="@+id/checkbox"
+                />
+            <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+                android:id="@+id/eventNme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="event"
+                android:layout_weight="0.5"
+                android:textColor="@color/text_red"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
 
-        <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
-            android:id="@+id/eventNme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="event"
-            android:textColor="@color/text_red"
-            android:textSize="20dp"
-            android:textStyle="bold"
-
-            />
-
+        </LinearLayout>
         <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
             android:id="@+id/eventDesc"
             android:layout_width="wrap_content"

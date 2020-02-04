@@ -3,7 +3,17 @@ package zastraitsolutions.B5Calendar.Calendar;
 public class EventModel {
     String eventName;
     String eventDesc;
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
     String eventColor;
+    String eventDate;
 
     public String getEventColor() {
         return eventColor;

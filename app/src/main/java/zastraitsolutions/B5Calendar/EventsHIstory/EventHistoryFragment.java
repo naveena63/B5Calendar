@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import zastraitsolutions.B5Calendar.R;
 import zastraitsolutions.B5Calendar.Utils.AppConstants;
+import zastraitsolutions.B5Calendar.Utils.PrefManager;
 
 
 /**
@@ -40,6 +41,7 @@ public class EventHistoryFragment extends Fragment {
     RequestQueue requestQueue;
     RecyclerView my_recycler_view;
     AllEventsHistoryAdapter adapter;
+    PrefManager prefManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class EventHistoryFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_event_history, container, false);
         requestQueue = Volley.newRequestQueue(getActivity());
         allSampleData = new ArrayList<AllEventHistoryModel>();
-
+prefManager=new PrefManager(getContext());
         my_recycler_view= (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
         my_recycler_view.setHasFixedSize(true);
@@ -77,6 +79,7 @@ public class EventHistoryFragment extends Fragment {
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     AllEventHistoryModel allEventHistoryModel = new AllEventHistoryModel();
                                     String date = jsonObject1.getString("event_date");
+
                                     allEventHistoryModel.setHeaderTitle(date);
                                     JSONArray jsonArray1 = jsonObject1.getJSONArray("event_names");
 

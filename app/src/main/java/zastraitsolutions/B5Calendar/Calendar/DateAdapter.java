@@ -58,7 +58,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     SharedPreferences.Editor editor;
     String PREFERENCE = "AGENT";
     String logintype;
-    PrefManager prefManager;
+
     private Context mContext;
     String output = "";
     RequestQueue requestQueue;
@@ -67,6 +67,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     UserFormADapter userFormADapter;
     TextView no_packages_available;
     LinearLayout parentlayout;
+    PrefManager prefManager;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public DateAdapter(Context context, ArrayList<DateModel> dataList, int type,RecyclerViewListener  listener) {
         this.dataList = dataList;
@@ -82,7 +83,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.calendar_item, null);
         ItemRowHolder mh = new ItemRowHolder(v,mListener);
-        prefManager = new PrefManager(mContext);
+prefManager=new PrefManager(mContext);
         return mh;
     }
 
@@ -96,11 +97,12 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
         System.out.println("dategggggggg" + output);
         final String calendarDate = dataList.get(i).getCalendarDate();
         String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
-        System.out.println("upToNCharacters" + upToNCharacters);
-        prefManager.storeValue(AppConstants.EEVENTDATE, upToNCharacters);
+        prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
         prefManager.setEventdate(upToNCharacters);
+        Log.i("geteventdate",""+prefManager.getEventdate());
+        System.out.println("upToNCharacters" + upToNCharacters);
 
-        Log.i("hnsvd", "jklasdh" + prefManager.getEventdate());
+
 
         final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
         date.setText(upToNCharacters);
@@ -248,15 +250,13 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     String status = jsonObject.getString("status");
-
                                     if (status.equalsIgnoreCase("true")) {
                                         JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                                         String monthname = jsonObject1.getString("monthname");
                                         String year = jsonObject1.getString("year");
                                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
-
-                                        for (int i = 0; i < jsonArray.length(); i++) {
-
+                                        for (int i = 0; i < jsonArray.length(); i++)
+                                        {
                                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                             String eventDtae = jsonObject2.getString("event_date");
                                             JSONArray jsonArray1 = jsonObject2.getJSONArray("event_names");
@@ -355,7 +355,13 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
             mListener = listener;
             view.setOnClickListener(this);
             recycler_view_list = (RecyclerView) view.findViewById(R.id.eventRecyclerView);
-
+          /*  recycler_view_list.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "yes", Toast.LENGTH_SHORT).show();
+                }
+            });
+*/
     }
         @Override
         public void onClick(View v) {

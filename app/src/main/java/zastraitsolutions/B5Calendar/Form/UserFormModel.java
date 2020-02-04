@@ -4,6 +4,16 @@ public class UserFormModel {
 private String eventName;
 private String eventDesc;
 
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    private String eventDate;
+
     public String getEventName() {
         return eventName;
     }
