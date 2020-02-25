@@ -97,9 +97,9 @@ prefManager=new PrefManager(mContext);
         System.out.println("dategggggggg" + output);
         final String calendarDate = dataList.get(i).getCalendarDate();
         String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
-        prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
-        prefManager.setEventdate(upToNCharacters);
-        Log.i("geteventdate",""+prefManager.getEventdate());
+      /*  prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
+        prefManager.setEventdate(upToNCharacters);*/
+      //  Log.i("geteventdate",""+prefManager.getEventdate());
         System.out.println("upToNCharacters" + upToNCharacters);
 
 
@@ -355,13 +355,12 @@ prefManager=new PrefManager(mContext);
             mListener = listener;
             view.setOnClickListener(this);
             recycler_view_list = (RecyclerView) view.findViewById(R.id.eventRecyclerView);
-          /*  recycler_view_list.setOnClickListener(new View.OnClickListener() {
+            recycler_view_list.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, "yes", Toast.LENGTH_SHORT).show();
                 }
             });
-*/
     }
         @Override
         public void onClick(View v) {

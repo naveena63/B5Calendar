@@ -30,8 +30,8 @@ public class SplashActivity extends AppCompatActivity {
     private NotificationChannel mChannel;
     private NotificationManager notifManager;
     int m = 0;
-    String unique_id;
-    @RequiresApi(api = Build.VERSION_CODES.O)
+        String unique_id;
+        @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

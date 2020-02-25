@@ -42,7 +42,7 @@ import java.util.Map;
 import zastraitsolutions.B5Calendar.R;
 import zastraitsolutions.B5Calendar.Utils.AppConstants;
 import zastraitsolutions.B5Calendar.Utils.PrefManager;
-
+// Developed By Pallantla naveena
 public class CalendarFragment extends Fragment implements RecyclerViewListener {
 
     ArrayList<DateModel> allSampleData;
@@ -103,8 +103,8 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
         RecyclerViewListener listener = (view, position) -> {
             // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
         };
-        dateadapter = new DateAdapter(getContext(), allSampleData, type, listener);
-        eventADapter = new EventAdapter(getContext(), eventModelList, listener);
+            dateadapter = new DateAdapter(getContext(), allSampleData, type, listener);
+            eventADapter = new EventAdapter(getContext(), eventModelList, listener);
 
         Ib_next.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -198,17 +198,17 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
                         JSONObject json2 = jsonArray.getJSONObject(10);
                         inputdate = json2.getString("event_date");
-
                         System.out.println("inputdate" + inputdate);
+
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject json = jsonArray.getJSONObject(i);
                             DateModel dateModel = new DateModel();
                             String date = json.getString("event_date");
                             inputdate = date;
-
                             dateModel.setCalendarDate(inputdate);
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();
+
                             for (int j = 0; j < jsonArray1.length(); j++) {
                                 JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
                                 String eventName = jsonObject2.getString("event_short");
@@ -218,9 +218,7 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                             }
                             dateModel.setAllItemsInSection(eventModelList);
                             allSampleData.add(dateModel);
-
                         }
-
                         if (nextMonth) {
                             if (inputmnth.equalsIgnoreCase("Jan")) {
                                 c.add(Calendar.DATE, 31);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
@@ -315,6 +313,7 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                             }
                         }
                         my_recycler_view.setAdapter(dateadapter);
+
                         dateadapter.notifyDataSetChanged();
                         my_recycler_view.setFocusable(false);
                     }
@@ -340,6 +339,6 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
 
     @Override
     public void onClick(View view, int position) {
-
+        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
     }
 }

@@ -8,7 +8,7 @@ public class AppConstants {
     public static final String DEVICE_ID = "devoceid";
     public static final String USER_ID = "userid";
 
-    public static String BASE_URL = "https://zastraitsolutions.com/apis/calendar/rest/index.php/Signup/";
+    public static String BASE_URL = "https://eabhiyan.com/apis/calendar/rest/index.php/Signup/";
     public static String SIGNUP = "postuser";
     public static String LOGIN = "login";
     public static String FORM = "postevent";
