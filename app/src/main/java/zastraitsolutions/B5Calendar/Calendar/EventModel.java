@@ -2,18 +2,18 @@ package zastraitsolutions.B5Calendar.Calendar;
 
 public class EventModel {
     String eventName;
-    String eventDesc;
-
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }
-
+    String calendarDate;
     String eventColor;
-    String eventDate;
+    public String getCalendarDate() {
+        return calendarDate;
+    }
+
+    public void setCalendarDate(String calendarDate) {
+        this.calendarDate = calendarDate;
+    }
+
+
+
 
     public String getEventColor() {
         return eventColor;
@@ -28,11 +28,6 @@ public class EventModel {
         this.eventColor=eventColor;
     }
 
-//    public EventModel(String eventnam) {
-//        this.eventName=eventnam;
-//
-//    }
-
 
     public String getEventName() {
 
@@ -45,11 +40,4 @@ public class EventModel {
         this.eventName = eventName;
     }
 
-    public String getEventDesc() {
-        return eventDesc;
-    }
-
-    public void setEventDesc(String eventDesc) {
-        this.eventDesc = eventDesc;
-    }
 }

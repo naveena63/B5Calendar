@@ -43,7 +43,7 @@ import zastraitsolutions.B5Calendar.R;
 import zastraitsolutions.B5Calendar.Utils.AppConstants;
 import zastraitsolutions.B5Calendar.Utils.PrefManager;
 // Developed By Pallantla naveena
-public class CalendarFragment extends Fragment implements RecyclerViewListener {
+public class CalendarFragment extends Fragment  {
 
     ArrayList<DateModel> allSampleData;
     ArrayList<EventModel> eventModelList;
@@ -100,11 +100,11 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
         my_recycler_view.addItemDecoration(itemDecor);
         my_recycler_view.addItemDecoration(itemDecor2);
         my_recycler_view.setHasFixedSize(true);
-        RecyclerViewListener listener = (view, position) -> {
+      /*  RecyclerViewListener listener = (view, position) -> {
             // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-        };
-            dateadapter = new DateAdapter(getContext(), allSampleData, type, listener);
-            eventADapter = new EventAdapter(getContext(), eventModelList, listener);
+        };*/
+            dateadapter = new DateAdapter(getContext(), allSampleData, type);
+            eventADapter = new EventAdapter(getContext(), eventModelList);
 
         Ib_next.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -206,6 +206,8 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                             String date = json.getString("event_date");
                             inputdate = date;
                             dateModel.setCalendarDate(inputdate);
+
+
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();
 
@@ -215,6 +217,8 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                                 String eventColor = jsonObject2.getString("color_code");
                                 Log.e("color", eventColor);
                                 eventModelList.add(new EventModel(eventName, eventColor));
+                                EventModel eventModel=new EventModel(eventName,eventColor);
+                                eventModel.setCalendarDate(inputdate);
                             }
                             dateModel.setAllItemsInSection(eventModelList);
                             allSampleData.add(dateModel);
@@ -313,9 +317,14 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
                             }
                         }
                         my_recycler_view.setAdapter(dateadapter);
-
                         dateadapter.notifyDataSetChanged();
                         my_recycler_view.setFocusable(false);
+                        my_recycler_view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -337,8 +346,8 @@ public class CalendarFragment extends Fragment implements RecyclerViewListener {
         requestQueue.add(stringRequest);
     }
 
-    @Override
+ /*   @Override
     public void onClick(View view, int position) {
         Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

@@ -81,12 +81,12 @@ public class MyCalendarFragment extends Fragment {
         output = df.format(c);
         System.out.println("outpudffrjickicyt" + output);
         getData(output, true);
-        RecyclerViewListener listener = (view, position) -> {
+       /* RecyclerViewListener listener = (view, position) -> {
             Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-        };
+        };*/
         my_recycler_view.setHasFixedSize(true);
-        adapter = new DateAdapter(getContext(), allSampleData, type, listener);
-        eventADapter = new EventAdapter(getContext(), eventModelList, listener);
+        adapter = new DateAdapter(getContext(), allSampleData, type);
+        eventADapter = new EventAdapter(getContext(), eventModelList);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 7);
         my_recycler_view.setLayoutManager(layoutManager);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);

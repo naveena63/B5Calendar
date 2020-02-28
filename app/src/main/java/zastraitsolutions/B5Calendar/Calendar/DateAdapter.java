@@ -68,12 +68,13 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     TextView no_packages_available;
     LinearLayout parentlayout;
     PrefManager prefManager;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public DateAdapter(Context context, ArrayList<DateModel> dataList, int type,RecyclerViewListener  listener) {
+    public DateAdapter(Context context, ArrayList<DateModel> dataList, int type) {
         this.dataList = dataList;
         this.type = type;
         this.mContext = context;
-        mListener=listener;
+        //  mListener=listener;
 
     }
 
@@ -82,26 +83,28 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     public ItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.calendar_item, null);
-        ItemRowHolder mh = new ItemRowHolder(v,mListener);
-prefManager=new PrefManager(mContext);
+        ItemRowHolder mh = new ItemRowHolder(v, mListener);
+        prefManager = new PrefManager(mContext);
         return mh;
     }
 
     @Override
     public void onBindViewHolder(ItemRowHolder itemRowHolder, final int i) {
         itemRowHolder.setIsRecyclable(false);
+
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         final String output = df.format(c);
         System.out.println("dategggggggg" + output);
         final String calendarDate = dataList.get(i).getCalendarDate();
+        prefManager.storeValue(AppConstants.EEVENTDATE, calendarDate);
+        prefManager.setEventdate(calendarDate);
         String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
       /*  prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
         prefManager.setEventdate(upToNCharacters);*/
-      //  Log.i("geteventdate",""+prefManager.getEventdate());
+        //  Log.i("geteventdate",""+prefManager.getEventdate());
         System.out.println("upToNCharacters" + upToNCharacters);
-
 
 
         final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
@@ -125,8 +128,7 @@ prefManager=new PrefManager(mContext);
                     logintype = sharedpreferences.getString("login_type", "");
                     if (logintype.equalsIgnoreCase("1")) {
 
-                        if (singleSectionItems.size() > 0)
-                        {
+                        if (singleSectionItems.size() > 0) {
                             final Dialog dialog = new Dialog(mContext);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setCancelable(false);
@@ -161,6 +163,8 @@ prefManager=new PrefManager(mContext);
 
                                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                                 String eventDtae = jsonObject2.getString("event_date");
+                                                prefManager.storeValue(AppConstants.EEVENTDATE,eventDtae);
+                                                prefManager.setEventdate(eventDtae);
                                                 JSONArray jsonArray1 = jsonObject2.getJSONArray("event_names");
                                                 userFormModelArrayList = new ArrayList<>();
                                                 for (int j = 0; j < jsonArray1.length(); j++) {
@@ -209,8 +213,7 @@ prefManager=new PrefManager(mContext);
                             Button dialogButton = (Button) dialog.findViewById(R.id.btnClose);
                             dialogButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(View v)
-                                {
+                                public void onClick(View v) {
                                     dialog.dismiss();
                                 }
                             });
@@ -255,8 +258,7 @@ prefManager=new PrefManager(mContext);
                                         String monthname = jsonObject1.getString("monthname");
                                         String year = jsonObject1.getString("year");
                                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
-                                        for (int i = 0; i < jsonArray.length(); i++)
-                                        {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                             String eventDtae = jsonObject2.getString("event_date");
                                             JSONArray jsonArray1 = jsonObject2.getJSONArray("event_names");
@@ -332,26 +334,36 @@ prefManager=new PrefManager(mContext);
         itemRowHolder.recycler_view_list.setHasFixedSize(true);
         itemRowHolder.recycler_view_list.setLayoutManager(new LinearLayoutManager(mContext));
         itemRowHolder.recycler_view_list.setNestedScrollingEnabled(false);
-        RecyclerViewListener listener = (view, position) -> {
+       /* RecyclerViewListener listener = (view, position) -> {
             Toast.makeText(mContext, "Position " + position, Toast.LENGTH_SHORT).show();
-        };
+        };*/
         itemRowHolder.recycler_view_list.setFocusable(false);
-        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems,listener);
+        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems);
         itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
+        itemRowHolder.recycler_view_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onClickGridItem(dataList.get(i).getCalendarDate());
+                    Toast.makeText(mContext, "jdfk", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return (null != dataList ? dataList.size() : 0);
     }
-    public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private RecyclerViewListener mListener;
         protected RecyclerView recycler_view_list;
 
-        public ItemRowHolder(View view,RecyclerViewListener listener) {
+        public ItemRowHolder(View view, RecyclerViewListener listener) {
             super(view);
             date = view.findViewById(R.id.calendarDate);
-            parentlayout=view.findViewById(R.id.parentLayout);
+            parentlayout = view.findViewById(R.id.parentLayout);
             mListener = listener;
             view.setOnClickListener(this);
             recycler_view_list = (RecyclerView) view.findViewById(R.id.eventRecyclerView);
@@ -361,12 +373,14 @@ prefManager=new PrefManager(mContext);
                     Toast.makeText(mContext, "yes", Toast.LENGTH_SHORT).show();
                 }
             });
-    }
+        }
+
         @Override
         public void onClick(View v) {
-            mListener.onClick(v, getAdapterPosition());
+
         }
     }
+
     @Override
     public int getItemViewType(int position) {
         return position;
