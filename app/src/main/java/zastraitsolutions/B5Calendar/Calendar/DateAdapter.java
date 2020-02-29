@@ -58,7 +58,6 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
     SharedPreferences.Editor editor;
     String PREFERENCE = "AGENT";
     String logintype;
-
     private Context mContext;
     String output = "";
     RequestQueue requestQueue;
@@ -98,14 +97,12 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
         final String output = df.format(c);
         System.out.println("dategggggggg" + output);
         final String calendarDate = dataList.get(i).getCalendarDate();
-        prefManager.storeValue(AppConstants.EEVENTDATE, calendarDate);
-        prefManager.setEventdate(calendarDate);
-        String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
-      /*  prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
-        prefManager.setEventdate(upToNCharacters);*/
-        //  Log.i("geteventdate",""+prefManager.getEventdate());
-        System.out.println("upToNCharacters" + upToNCharacters);
 
+        String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
+        prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
+        prefManager.setEventdate(upToNCharacters);
+          Log.i("geteventdate",""+prefManager.getEventdate());
+        System.out.println("upToNCharacters" + upToNCharacters);
 
         final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
         date.setText(upToNCharacters);
@@ -163,8 +160,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
 
                                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                                 String eventDtae = jsonObject2.getString("event_date");
-                                                prefManager.storeValue(AppConstants.EEVENTDATE,eventDtae);
-                                                prefManager.setEventdate(eventDtae);
+
                                                 JSONArray jsonArray1 = jsonObject2.getJSONArray("event_names");
                                                 userFormModelArrayList = new ArrayList<>();
                                                 for (int j = 0; j < jsonArray1.length(); j++) {
@@ -338,7 +334,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
             Toast.makeText(mContext, "Position " + position, Toast.LENGTH_SHORT).show();
         };*/
         itemRowHolder.recycler_view_list.setFocusable(false);
-        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems);
+        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems,dataList);
         itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
         itemRowHolder.recycler_view_list.setOnClickListener(new View.OnClickListener() {
             @Override

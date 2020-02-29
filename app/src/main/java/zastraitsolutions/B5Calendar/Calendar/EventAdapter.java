@@ -48,9 +48,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.SingleItemRo
     public ArrayList<DateModel> dataList;
     protected CustomTextViewNormal tv_event,eventDate;
 
-    public EventAdapter(Context context, ArrayList<EventModel> itemsList) {
+    public EventAdapter(Context context, ArrayList<EventModel> itemsList, ArrayList<DateModel> dataList) {
         this.itemsList = itemsList;
         this.mContext = context;
+        this.dataList = dataList;
         this.listener = listener;
     }
 
@@ -73,13 +74,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.SingleItemRo
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         final String output = df.format(c);
         System.out.println("dategggggggg" + output);
-        final String calendarDate = itemsList.get(i).getCalendarDate();
-//        String upToNCharactersDate = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
+        final String calendarDate = dataList.get(i).getCalendarDate();
+       String upToNCharactersDate = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
 
         String upToNCharacters = event.substring(0, Math.min(event.length(), 4));
         Log.i("uptonchrahcets","uptoncharc"+upToNCharacters);
         tv_event.setText(upToNCharacters);
-        date.setText(calendarDate);
+        date.setText(upToNCharactersDate);
 
         String color = singleItem.getEventColor();
         Log.e("colorevt", color);
@@ -118,11 +119,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.SingleItemRo
                 TextView eventDate = (TextView) dialog.findViewById(R.id.eventDate);
                 no_packages_available = dialog.findViewById(R.id.no_packages_available);
                 requestQueue = Volley.newRequestQueue(mContext);
-                eventDate.setText(dataList.get(i).getCalendarDate());
+                eventDate.setText(upToNCharactersDate);
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(mContext,
                         LinearLayoutManager.VERTICAL, false));
-                String url_formation = AppConstants.BASE_URL + AppConstants.GETCALENDER + "date="  +prefManager.getEventdate() + "&type=day";
+                String url_formation = AppConstants.BASE_URL + AppConstants.GETCALENDER + "date="  +upToNCharactersDate+ "&type=day";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url_formation, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -139,7 +140,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.SingleItemRo
                                 for (int i = 0; i < jsonArray.length(); i++)
                                 {
                                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                    String eventDtae = jsonObject2.getString("event_date");
+                                    String eventDate = jsonObject2.getString("event_date");
+
                                     JSONArray jsonArray1 = jsonObject2.getJSONArray("event_names");
                                     userFormModelArrayList = new ArrayList<>();
                                     for (int j = 0; j < jsonArray1.length(); j++) {

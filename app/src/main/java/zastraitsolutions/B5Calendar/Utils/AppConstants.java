@@ -10,6 +10,7 @@ public class AppConstants {
 
     public static String BASE_URL = "https://eabhiyan.com/apis/calendar/rest/index.php/Signup/";
     public static String SIGNUP = "postuser";
+    public static String checkbox = "selectevent";
     public static String LOGIN = "login";
     public static String FORM = "postevent";
     public static String EVENTHISTORY = "getcalendarhistory";

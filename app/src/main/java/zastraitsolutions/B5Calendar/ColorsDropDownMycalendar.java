@@ -18,8 +18,7 @@ public class ColorsDropDownMycalendar implements AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
 
         Context mContext = v.getContext();
-
-        MyCalendarFormActivity mainActivity = ((MyCalendarFormActivity) mContext);
+     MyCalendarFormActivity mainActivity = ((MyCalendarFormActivity) mContext);
         Animation fadeInAnimation = AnimationUtils.loadAnimation(v.getContext(), android.R.anim.fade_in);
         fadeInAnimation.setDuration(10);
         v.startAnimation(fadeInAnimation);

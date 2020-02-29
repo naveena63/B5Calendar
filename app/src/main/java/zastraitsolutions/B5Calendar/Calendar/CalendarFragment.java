@@ -104,7 +104,7 @@ public class CalendarFragment extends Fragment  {
             // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
         };*/
             dateadapter = new DateAdapter(getContext(), allSampleData, type);
-            eventADapter = new EventAdapter(getContext(), eventModelList);
+            eventADapter = new EventAdapter(getContext(), eventModelList,allSampleData);
 
         Ib_next.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -198,15 +198,17 @@ public class CalendarFragment extends Fragment  {
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
                         JSONObject json2 = jsonArray.getJSONObject(10);
                         inputdate = json2.getString("event_date");
-                        System.out.println("inputdate" + inputdate);
+                       /* prefManager.storeValue(AppConstants.EEVENTDATE,inputdate);
+                        prefManager.setEventdate(inputdate);*/
+                        System.out.println("inputdate" + prefManager.getEventdate());
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject json = jsonArray.getJSONObject(i);
                             DateModel dateModel = new DateModel();
                             String date = json.getString("event_date");
                             inputdate = date;
+                            Log.i("bdjs","nskfd"+inputdate);
                             dateModel.setCalendarDate(inputdate);
-
 
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();

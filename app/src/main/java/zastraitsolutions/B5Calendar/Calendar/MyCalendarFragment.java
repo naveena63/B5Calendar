@@ -86,7 +86,7 @@ public class MyCalendarFragment extends Fragment {
         };*/
         my_recycler_view.setHasFixedSize(true);
         adapter = new DateAdapter(getContext(), allSampleData, type);
-        eventADapter = new EventAdapter(getContext(), eventModelList);
+        eventADapter = new EventAdapter(getContext(), eventModelList,allSampleData);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 7);
         my_recycler_view.setLayoutManager(layoutManager);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
