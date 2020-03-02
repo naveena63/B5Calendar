@@ -53,7 +53,7 @@ public class MyCalendarFragment extends Fragment {
     ImageButton Ib_next, ib_prev;
     String inputdate, inputmnth;
     int inputyear;
-    String prevMonth,nextmonth;
+    String prevMonth,nextmonth,calendarDate;
     String output = "";
     TextView tv_month, tv_year;
     PrefManager prefManager;
@@ -86,7 +86,7 @@ public class MyCalendarFragment extends Fragment {
         };*/
         my_recycler_view.setHasFixedSize(true);
         adapter = new DateAdapter(getContext(), allSampleData, type);
-        eventADapter = new EventAdapter(getContext(), eventModelList,allSampleData);
+        eventADapter = new EventAdapter(getContext(), eventModelList, calendarDate);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 7);
         my_recycler_view.setLayoutManager(layoutManager);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);

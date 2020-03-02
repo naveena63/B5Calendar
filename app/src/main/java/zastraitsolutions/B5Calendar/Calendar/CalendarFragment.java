@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +54,7 @@ public class CalendarFragment extends Fragment  {
     String inputdate, inputmnth;
     int inputyear;
     String output = "";
-    String prev_button, next_button;
+    String prev_button, next_button,calendarDate;
     int type = 2;
     TextView tv_month, tv_year;
     PrefManager prefManager;
@@ -104,7 +103,7 @@ public class CalendarFragment extends Fragment  {
             // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
         };*/
             dateadapter = new DateAdapter(getContext(), allSampleData, type);
-            eventADapter = new EventAdapter(getContext(), eventModelList,allSampleData);
+            eventADapter = new EventAdapter(getContext(), eventModelList, calendarDate);
 
         Ib_next.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)

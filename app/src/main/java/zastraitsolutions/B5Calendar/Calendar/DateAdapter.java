@@ -23,6 +23,7 @@ import zastraitsolutions.B5Calendar.Utils.AppConstants;
 import zastraitsolutions.B5Calendar.Utils.PrefManager;
 
 import androidx.annotation.RequiresApi;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,6 +98,10 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
         final String output = df.format(c);
         System.out.println("dategggggggg" + output);
         final String calendarDate = dataList.get(i).getCalendarDate();
+
+        Intent intent = new Intent("message_subject_intent");
+        intent.putExtra("name" , String.valueOf(dataList.get(i).getCalendarDate()));
+        LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
         String upToNCharacters = calendarDate.substring(0, Math.min(calendarDate.length(), 2));
         prefManager.storeValue(AppConstants.EEVENTDATE,upToNCharacters);
@@ -334,7 +339,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.ItemRowHolder>
             Toast.makeText(mContext, "Position " + position, Toast.LENGTH_SHORT).show();
         };*/
         itemRowHolder.recycler_view_list.setFocusable(false);
-        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems,dataList);
+        EventAdapter itemListDataAdapter = new EventAdapter(mContext, singleSectionItems,calendarDate);
         itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
         itemRowHolder.recycler_view_list.setOnClickListener(new View.OnClickListener() {
             @Override
