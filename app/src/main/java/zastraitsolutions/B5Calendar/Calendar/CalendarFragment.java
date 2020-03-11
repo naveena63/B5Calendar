@@ -208,10 +208,8 @@ public class CalendarFragment extends Fragment  {
                             inputdate = date;
                             Log.i("bdjs","nskfd"+inputdate);
                             dateModel.setCalendarDate(inputdate);
-
                             JSONArray jsonArray1 = json.getJSONArray("event_names");
                             eventModelList = new ArrayList<>();
-
                             for (int j = 0; j < jsonArray1.length(); j++) {
                                 JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
                                 String eventName = jsonObject2.getString("event_short");

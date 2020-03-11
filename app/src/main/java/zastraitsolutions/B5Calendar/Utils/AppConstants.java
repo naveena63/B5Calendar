@@ -21,4 +21,5 @@ public class AppConstants {
     public static String UPDATEUSER = "postuser";
     public static String EDITEVENT = "postevent";
 
+    public static String name="ank";
 }

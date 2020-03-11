@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:id="@+id/relativeLayout"
     tools:context=".LoginActivity">
 
     <LinearLayout
@@ -21,7 +20,6 @@
 
     />
         <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
-            android:id="@+id/newText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -39,7 +37,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_mobilenumber"
+
                 android:padding="10dp">
 
                 <EditText
@@ -47,7 +45,9 @@
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:textSize="15dp"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
+                    android:hint="@string/phonenumber"
                     android:inputType="phone"
                     />
             </com.google.android.material.textfield.TextInputLayout>

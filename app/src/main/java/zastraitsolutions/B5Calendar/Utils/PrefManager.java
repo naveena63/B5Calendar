@@ -14,6 +14,7 @@ public class PrefManager {
     private static final String DEVICE_ID = "deviceid";
     private static final String userid = "userid";
     private static final String eventNamedate = "userid";
+    private static final String name = "name";
 
 
     public PrefManager(Context context) {
@@ -89,6 +90,14 @@ public class PrefManager {
 
     public void setEventNamedate(String eventNamedate) {
         editor.putString(eventNamedate, eventNamedate);
+        editor.commit();
+    }
+    public String getName() {
+        return pref.getString(name, "");
+    }
+
+    public void setName(String name) {
+        editor.putString(name, name);
         editor.commit();
     }
 

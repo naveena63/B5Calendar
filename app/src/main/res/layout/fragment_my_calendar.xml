@@ -9,12 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/watermark"
-        android:id="@+id/ll_calendar"
         android:orientation="vertical" >
         <!--        android:background="@drawable/calendar_bg_shape"-->
 
         <LinearLayout
-            android:id="@+id/header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -79,13 +77,11 @@
         </LinearLayout>
 
         <TableRow
-            android:id="@+id/tableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="6dp" >
 
             <TextView
-                android:id="@+id/TextView06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -96,7 +92,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TextView05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -107,7 +102,6 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/TextView04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -118,7 +112,6 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/TextView03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -129,7 +122,6 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -140,7 +132,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TextView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -151,7 +142,6 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -163,7 +153,6 @@
         </TableRow>
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#dfdfdf"

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -64,6 +65,7 @@ public class UserFormADapter extends RecyclerView.Adapter<UserFormADapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox checkBox;
+        Button buttonsave;
         CustomTextViewNormal evntname, eventDesc;
 
         ViewHolder(View itemView) {
@@ -71,39 +73,46 @@ public class UserFormADapter extends RecyclerView.Adapter<UserFormADapter.ViewHo
             evntname = itemView.findViewById(R.id.eventNme);
             eventDesc = itemView.findViewById(R.id.eventDesc);
             checkBox = itemView.findViewById(R.id.checkbox);
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    final String name = evntname.getText().toString();
-                    final String desc = eventDesc.getText().toString();
 
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL + AppConstants.checkbox, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                           Log.i("checkbox","checkbox"+response);
-                            if (isChecked){
-                                checkBox.setEnabled(false);
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
 
-                        }
-                    }) {
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> map = new HashMap<>();
-                            map.put("event_name", name);
-                            map.put("event_description", desc);
-                            map.put("id_user", prefManager.getUserid());
-                            return map;
-                        }
-                    };
-                    RequestQueue requestQueue = Volley.newRequestQueue(context);
-                    requestQueue.add(stringRequest);
-                }
+                    checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            final String name = evntname.getText().toString();
+                            final String desc = eventDesc.getText().toString();
 
-            });
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL + AppConstants.checkbox, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.i("checkbox","checkbox"+response);
+                                    if (isChecked){
+                                        checkBox.setEnabled(false);
+                                        prefManager.storeValue(AppConstants.name,name);
+                                        prefManager.setName(name);
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+
+                                }
+                            }) {
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+                                    Map<String, String> map = new HashMap<>();
+                                    map.put("event_name", name);
+                                    map.put("event_description", desc);
+                                    map.put("id_user", prefManager.getUserid());
+                                    return map;
+                                }
+                            };
+                            RequestQueue requestQueue = Volley.newRequestQueue(context);
+                            requestQueue.add(stringRequest);
+                        }
+
+                    });
+
+
+
         }
     }
 }

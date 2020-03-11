@@ -89,7 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         List<String> stateList = new ArrayList<String>();
         stateList.add("Andra Pradesh");
-        stateList.add("Telagana");
+        stateList.add("Telangana");
         stateList.add("Tamilnadu");
         stateList.add("Kerala");
 

@@ -6,13 +6,8 @@
 <color name="text_red">#F44336</color>
 <color name="white">#ffffff</color>
 <color name="black">#0d0d0d</color>
-<color name="colorBackground">#413e4f</color>
-<color name="colorText">#FFFFFF</color>
-<color name="colorTextHint">#51d8c7</color>
-<color name="disabletextcolor">#51d8c7</color>
-<color name="aqua">#00FFFF</color>
 
-<color name="Blue">#0000FF</color>
+    <color name="Blue">#0000FF</color>
 <color name="red">#FF0000</color>
 <color name="green">#00FF00</color>
 <color name="orange">#FFA500</color>
@@ -20,5 +15,4 @@
 <color name="navBlue">#006699</color>
 
 
-<color name="black_transparent">#99030303</color>
 </resources>
