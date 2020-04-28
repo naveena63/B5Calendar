@@ -2,6 +2,8 @@ package zastraitsolutions.B5Calendar.Form;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,14 +38,21 @@ import zastraitsolutions.B5Calendar.Utils.AppConstants;
 import zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal;
 import zastraitsolutions.B5Calendar.Utils.PrefManager;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class UserFormADapter extends RecyclerView.Adapter<UserFormADapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<UserFormModel> userFormModelArrayList;
+    private ArrayList<Popupdata_modelclass> userFormModelArrayList;
+    private ArrayList<UserFormModel> popupdata;
     ViewGroup viewGroup;
     PrefManager prefManager;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyUserChoice" ;
+    ArrayList<String> selectedItems = new ArrayList<String>();
 
-    public UserFormADapter(Context userFormActivity, ArrayList<UserFormModel> userFormModels) {
+    public UserFormADapter(Context userFormActivity, ArrayList<Popupdata_modelclass> userFormModels)
+    {
         this.userFormModelArrayList = userFormModels;
     }
 
@@ -53,10 +67,56 @@ public class UserFormADapter extends RecyclerView.Adapter<UserFormADapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") final int i) {
-        viewHolder.evntname.setText(userFormModelArrayList.get(i).getEventName());
-        viewHolder.eventDesc.setText("\u2713" + userFormModelArrayList.get(i).getEventDesc());
+        viewHolder.evntname.setText(userFormModelArrayList.get(i).getEvent_name());
+        viewHolder.eventDesc.setText("\u2713" + userFormModelArrayList.get(i).getEvent_description());
+        SharedPreferences sharedPreferences = context.getSharedPreferences("popupdata", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("popupdata", null);
+        Type type = new TypeToken<ArrayList<UserFormModel>>() {
+        }.getType();
+        popupdata = gson.fromJson(json, type);
+        int eventId = userFormModelArrayList.get(i).getChecked();
+        if (eventId==0 ){
+            viewHolder.checkBox.setChecked(false);
+
+        }
+        else {
+            viewHolder.checkBox.setChecked(true);
+
+        }
+
+
+
+//        String eventId1 = popupdata.get(i).getCheckboxValue();
+        Log.e("checkbox",eventId+" ");
+
+        viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (eventId==0 ){
+                    viewHolder.checkBox.setChecked(true);
+                    userFormModelArrayList.get(i).setChecked(1);
+                }
+                else {
+                    viewHolder.checkBox.setChecked(false);
+                    userFormModelArrayList.get(i).setChecked(0);
+                }
+
+
+
+            }
+        });
+
+
+
+        Log.e("ihatemyselfie", String.valueOf(userFormModelArrayList.get(i).checked));
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences.Editor editor = preferences.edit();
+
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -73,47 +133,9 @@ public class UserFormADapter extends RecyclerView.Adapter<UserFormADapter.ViewHo
             evntname = itemView.findViewById(R.id.eventNme);
             eventDesc = itemView.findViewById(R.id.eventDesc);
             checkBox = itemView.findViewById(R.id.checkbox);
-
-
-                    checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            final String name = evntname.getText().toString();
-                            final String desc = eventDesc.getText().toString();
-
-                            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL + AppConstants.checkbox, new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Log.i("checkbox","checkbox"+response);
-                                    if (isChecked){
-                                        checkBox.setEnabled(false);
-                                        prefManager.storeValue(AppConstants.name,name);
-                                        prefManager.setName(name);
-                                    }
-                                }
-                            }, new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                }
-                            }) {
-                                @Override
-                                protected Map<String, String> getParams() throws AuthFailureError {
-                                    Map<String, String> map = new HashMap<>();
-                                    map.put("event_name", name);
-                                    map.put("event_description", desc);
-                                    map.put("id_user", prefManager.getUserid());
-                                    return map;
-                                }
-                            };
-                            RequestQueue requestQueue = Volley.newRequestQueue(context);
-                            requestQueue.add(stringRequest);
-                        }
-
-                    });
-
-
-
         }
     }
+
+
 }
 

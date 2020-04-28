@@ -1,8 +1,40 @@
 package zastraitsolutions.B5Calendar.Form;
 
 public class UserFormModel {
-private String eventName;
-private String eventDesc;
+    private String eventName;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
+    private String eventDesc;
+    private String userid;
+    private String checkboxValue;
+
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+
+
+    public String getCheckboxValue() {
+        return checkboxValue;
+    }
+
+    public void setCheckboxValue(String checkboxValue) {
+        this.checkboxValue = checkboxValue;
+    }
+
 
     public String getEventDate() {
         return eventDate;

@@ -46,7 +46,8 @@ public class UserFormActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     CustomTextViewNormal eventDate;
     PrefManager prefManager;
-    ArrayList<UserFormModel> userFormModelArrayList;
+    ArrayList<Popupdata_modelclass> userFormModelArrayList;
+    Popupdata_modelclass popupdata_modelclass;
     UserFormModel userFormModel;
     UserFormADapter userFormADapter;
     RecyclerView recyclerView;
@@ -108,7 +109,7 @@ public class UserFormActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url_formation, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response", "response" + response);
+                Log.i("response12345", "response" + response);
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -134,10 +135,10 @@ public class UserFormActivity extends AppCompatActivity {
                                 String evenname = jsonObject3.getString("event_name");
                                 String eventDesc = jsonObject3.getString("event_description");
 
-                                userFormModel = new UserFormModel();
-                                userFormModel.setEventName(evenname);
-                                userFormModel.setEventDesc(eventDesc);
-                                userFormModelArrayList.add(userFormModel);
+                                popupdata_modelclass = new Popupdata_modelclass();
+                                popupdata_modelclass.setEvent_name(evenname);
+                                popupdata_modelclass.setEvent_description(eventDesc);
+                                userFormModelArrayList.add(popupdata_modelclass);
                             }
 
                         }

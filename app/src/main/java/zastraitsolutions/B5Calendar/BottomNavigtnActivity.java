@@ -63,10 +63,9 @@ public class BottomNavigtnActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bottom_navigtn);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_view);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        textviewScroll=findViewById(R.id.textviewScroll);
-        textviewScroll.setSelected(true);
+        TextView tv = (TextView) this.findViewById(R.id.textviewScroll);
+        tv.setSelected(true);
 
-        textviewScroll.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         sessionId = getIntent().getStringExtra("session");
         if (sessionId=="1")
         {

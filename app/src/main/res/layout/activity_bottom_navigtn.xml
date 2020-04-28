@@ -19,14 +19,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/nav_view"
-        android:text="In case any Due date or holiday please work on before day"
+android:text="@string/duedate"
         android:textAlignment="center"
-        android:ellipsize="marquee"
-        android:singleLine="true"
         android:fadingEdge="horizontal"
+android:textAllCaps="false"
+        android:textColor="@color/red"
+        android:singleLine="true"
+        android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
-        android:textColor="@color/red" />
+
+        android:padding="0dip"
+        android:gravity="center_horizontal" />
 
     <FrameLayout
         android:id="@+id/fragment_container"

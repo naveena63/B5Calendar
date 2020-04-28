@@ -8,8 +8,8 @@ android {
         applicationId "zastraitsolutions.b5calendar"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.2"
+        versionCode 5
+        versionName "1.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -46,5 +46,6 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 apply plugin: 'com.google.gms.google-services'
