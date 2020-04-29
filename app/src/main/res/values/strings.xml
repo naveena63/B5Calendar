@@ -56,5 +56,11 @@ Email: mail@b5consulting.com\n
     <string name="channel_name">channelname</string>
     <string name="channcel_desc">descprion</string>
     <string name="title_calendaer">Mycalendar</string>
+    <string name="submitForgotpaswrd">submit</string>
+    <string name="enterOtp">Enter otp</string>
+    <string name="cnfrmPaswrd">Confirm password</string>
+    <string name="newPaswrd">New password</string>
+    <string name="updatetext">Update B5 Compliance Calendar</string>
+    <string name="updatetext1">Our application recommends that you  update to the latest version</string>
 </resources>
 

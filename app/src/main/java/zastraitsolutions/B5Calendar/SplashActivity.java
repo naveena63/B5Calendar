@@ -7,16 +7,23 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +65,7 @@ public class SplashActivity extends AppCompatActivity {
 
     PrefManager prefManager;
 
-
+    String version;
     private static final String CHANNEL_ID = "4565";
     private NotificationChannel mChannel;
     private NotificationManager notifManager;
@@ -113,28 +120,112 @@ public class SplashActivity extends AppCompatActivity {
             }
             // or directly send it to server
         });
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!prefManager.getBoolean(AppConstants.APP_USER_LOGIN)) {
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-
-                    finish();
-                } else {
-                    Intent intent = new Intent(SplashActivity.this, BottomNavigtnActivity.class);
-                    startActivity(intent);
-
-                    finish();
-                }
-            }
-        }, 3000);
-
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (!prefManager.getBoolean(AppConstants.APP_USER_LOGIN)) {
+//                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//
+//                    finish();
+//                } else {
+//                    Intent intent = new Intent(SplashActivity.this, BottomNavigtnActivity.class);
+//                    startActivity(intent);
+//
+//                    finish();
+//                }
+//            }
+//        }, 3000);
+//
 
         prefManager = new PrefManager(this);
 
         //declartn
+      //  apicall();
+    }
 
+    private void apicall() {
+        getVersionInfo();
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String version_code=jsonObject.getString("version_code");
+
+                    Log.e("versoncode",version_code+" "+version);
+                    if (version_code.equals(version)) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!prefManager.getBoolean(AppConstants.APP_USER_LOGIN)) {
+                                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(SplashActivity.this, BottomNavigtnActivity.class);
+                                    startActivity(intent);
+
+                                    finish();
+                                }
+                            }
+                        }, 3000);
+                    }
+                    else {
+                        showDialog(SplashActivity.this);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    private void getVersionInfo() {
+        String versionName = "";
+        int versionCode = -1;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionName = packageInfo.versionName;
+            versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        version = String.valueOf(versionCode);
+
+
+//        TextView textViewVersionInfo = (TextView) findViewById(R.id.textview_version_info);
+//        textViewVersionInfo.setText(String.format("Version name = %s \nVersion code = %d", versionName, versionCode));
+    }
+    public void showDialog(Activity activity){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.show();
+        dialog.setContentView(R.layout.update_dailog);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_update);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://play.google.com/store/apps/details?id=com.zastrait.qrcode";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
     }
 }
 

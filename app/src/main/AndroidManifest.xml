@@ -30,6 +30,9 @@
         <activity android:name=".Form.UserFormActivity" />
         <activity android:name=".SettingsMenu.HelpActivity" />
         <activity android:name=".SettingsMenu.TermsAndCondtionsActivity" />
+        <activity android:name=".forgotpaswrd.ForgotPaswrdActivity" />
+        <activity android:name=".forgotpaswrd.OtpActivity" />
+        <activity android:name=".forgotpaswrd.ChangePaswordActivity" />
         <activity android:name=".SettingsMenu.AboutActivity" />
         <activity
             android:name=".BottomNavigtnActivity"
