@@ -60,7 +60,7 @@ public class ChangePaswordActivity extends AppCompatActivity {
         Log.i("phonenumchnge", "phone" + phonenum);
         final String new_pwd = newPaswrd.getText().toString();
         final String change_pwd = cnfrmPaswrd.getText().toString();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL+AppConstants.BASE_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL+AppConstants.CHANGEPASWRD,
                 new Response.Listener<String>() {
 
                     @Override
@@ -108,7 +108,7 @@ public class ChangePaswordActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
-                map.put("mobile_number", phonenum);
+                map.put("phone_number", phonenum);
                 map.put("new_pass", new_pwd);
                 map.put("confirm_pass", change_pwd);
                 return map;

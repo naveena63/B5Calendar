@@ -64,7 +64,9 @@ public class BottomNavigtnActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_view);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         TextView tv = (TextView) this.findViewById(R.id.textviewScroll);
+        TextView tv1 = (TextView) this.findViewById(R.id.textviewScroll1);
         tv.setSelected(true);
+        tv1.setSelected(true);
 
         sessionId = getIntent().getStringExtra("session");
         if (sessionId=="1")

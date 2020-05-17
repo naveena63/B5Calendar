@@ -62,7 +62,7 @@ Button buttonsubmit;
 
 
         progressBar.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL+AppConstants.BASE_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.BASE_URL+AppConstants.Forgot_pasword, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {

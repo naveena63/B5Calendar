@@ -18,9 +18,12 @@ public class AppConstants {
     public static String GETCALENDER = "getcalendar?";
     public static String MYCALENDAR = "getusercalendar?";
     public static String postuserevent = "postuserevent";
-    public static String CHANGEPASWRD = "changePassword";
-    public static String UPDATEUSER = "postuser";
-    public static String EDITEVENT = "postevent";
+    public static String Forgot_pasword = "forgotPassword";
+    public static String Forgot_otp = "verifyOtp";
+    public static String CHANGEPASWRD = "changepassword1";
+    public static String Register_otp = "verifyOtpReg";
+    public static String Version = "app_Version";
+
 
     public static String name="ank";
 }

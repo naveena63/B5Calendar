@@ -14,30 +14,46 @@
         android:background="#fff"
         app:menu="@menu/bottom_nav_menu" />
 
+
     <TextView
         android:id="@+id/textviewScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/nav_view"
-android:text="@string/duedate"
-        android:textAlignment="center"
-        android:fadingEdge="horizontal"
-android:textAllCaps="false"
-        android:textColor="@color/red"
-        android:singleLine="true"
         android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:gravity="center_horizontal"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="@string/duedate"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/red" />
 
+    <TextView
+        android:id="@+id/textviewScroll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_above="@id/textviewScroll"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:gravity="center_horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
         android:padding="0dip"
-        android:gravity="center_horizontal" />
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="@string/duedtaeone"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/nav_view"
-        android:paddingBottom="18dp">
+        android:paddingBottom="38dp">
 
     </FrameLayout>
 </RelativeLayout>

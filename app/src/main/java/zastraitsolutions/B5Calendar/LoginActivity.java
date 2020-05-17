@@ -41,12 +41,13 @@ import java.util.Map;
 import zastraitsolutions.B5Calendar.Utils.AppConstants;
 import zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal;
 import zastraitsolutions.B5Calendar.Utils.PrefManager;
+import zastraitsolutions.B5Calendar.forgotpaswrd.ForgotPaswrdActivity;
 
 public class LoginActivity extends AppCompatActivity {
     EditText mobile, loginPaswrd;
     Button buttonLogin;
     CustomTextViewNormal createNewAccount;
-
+TextView forgotPasword;
     PrefManager prefManager;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
@@ -63,6 +64,7 @@ ProgressBar progressBar=new ProgressBar(this);
         loginPaswrd = findViewById(R.id.loginPaswrd);
         buttonLogin = findViewById(R.id.buttonLogin);
         createNewAccount = findViewById(R.id.createNewAccount);
+        forgotPasword = findViewById(R.id.forgotPasword);
         mobile.setTypeface(typeface);
         loginPaswrd.setTypeface(typeface);
         buttonLogin.setTypeface(typeface);
@@ -73,6 +75,12 @@ ProgressBar progressBar=new ProgressBar(this);
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });  forgotPasword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPaswrdActivity.class);
                 startActivity(intent);
             }
         });

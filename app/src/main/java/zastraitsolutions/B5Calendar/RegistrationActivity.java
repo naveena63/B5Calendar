@@ -24,6 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -144,8 +146,12 @@ public class RegistrationActivity extends AppCompatActivity {
                              String message = object.getString("message");
 
                             if (status.equals("true")) {
-                                Toast.makeText(RegistrationActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                JSONObject jsonObject=object.getJSONObject("data");
+                                String id_user=jsonObject.getString("id_user");
+                                prefManager.storeValue(AppConstants.USER_ID,id_user);
+                                prefManager.setUserid(id_user);
+                                Toast.makeText(RegistrationActivity.this, "Please verify mobilenumber before register your account", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegistrationActivity.this, RegisterOtpActivity.class);
                                 startActivity(intent);
                             } else if (status.equals("false")) {
                                 Toast.makeText(RegistrationActivity.this, message, Toast.LENGTH_SHORT).show();

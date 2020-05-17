@@ -62,5 +62,7 @@ Email: mail@b5consulting.com\n
     <string name="newPaswrd">New password</string>
     <string name="updatetext">Update B5 Compliance Calendar</string>
     <string name="updatetext1">Our application recommends that you  update to the latest version</string>
+    <string name="duedtaeone">Please check for changes in due dates by statutory authorities from time to time</string>
+    <string name="fcm_token">FCM Token: %s</string>
 </resources>
 
