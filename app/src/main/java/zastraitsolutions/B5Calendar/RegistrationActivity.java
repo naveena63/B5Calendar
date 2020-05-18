@@ -24,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.JsonObject;
 
 import org.json.JSONException;
@@ -87,7 +90,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
             }
         });
-
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String deviceToken = instanceIdResult.getToken();
+                Log.d("devicetoken", "devicesToken" + deviceToken);
+                prefManager.storeValue(AppConstants.REFRESH_TOKEN, deviceToken);
+                prefManager.setToken(deviceToken);
+                Log.d("token", "token" + prefManager.getToken());
+            }
+            // or directly send it to server
+        });
 
         List<String> stateList = new ArrayList<String>();
         stateList.add("Andra Pradesh");

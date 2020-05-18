@@ -27,7 +27,7 @@ public class MyMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        showNotificationMessage(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        showNotificationMessage(remoteMessage.getData().get("title"),remoteMessage.getData().get("message"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             CharSequence name = getString(R.string.channel_name);

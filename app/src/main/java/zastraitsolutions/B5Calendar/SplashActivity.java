@@ -92,27 +92,27 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            CharSequence name = getString(R.string.channel_name);
-//            String description = getString(R.string.channcel_desc);
-//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-//            channel.setDescription(description);
-//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-//            notificationManager.createNotificationChannel(channel);
-//            FirebaseMessaging.getInstance().subscribeToTopic("weather")
-//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            String msg = getString(R.string.msg_subscribed);
-//                            if (!task.isSuccessful()) {
-//                                msg = getString(R.string.msg_subscribe_failed);
-//                            }
-//                            Log.d("app", msg);
-//                            // Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channcel_desc);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+            FirebaseMessaging.getInstance().subscribeToTopic("weather")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = getString(R.string.msg_subscribed);
+                            if (!task.isSuccessful()) {
+                                msg = getString(R.string.msg_subscribe_failed);
+                            }
+                            Log.d("app", msg);
+                            // Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
 
         //this code will be written in splash screen
         unique_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
