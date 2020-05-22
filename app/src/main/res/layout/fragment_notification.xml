@@ -17,7 +17,7 @@
             android:background="@drawable/calendar_bg_shape"
             android:orientation="vertical">
 
-            <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+            <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_10dp"

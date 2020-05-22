@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="zastraitsolutions.B5Calendar.SettingsMenu.TermsAndCondtionsActivity">
+    tools:context="zastraitsolutions.b5calendar.SettingsMenu.TermsAndCondtionsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_terms"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         android:background="@color/colorAccent"/>
-    <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+    <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15dp"
@@ -23,7 +23,7 @@
 
         />
 
-    <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+    <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15dp"

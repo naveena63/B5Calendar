@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
 
-        <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+        <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
             android:id="@+id/calendarDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

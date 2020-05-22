@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+        <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
             android:id="@+id/eventNme"
             android:layout_width="70dp"
             android:layout_height="19dp"

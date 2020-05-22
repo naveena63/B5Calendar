@@ -15,7 +15,7 @@
         android:layout_height="100dp"
         android:src="@drawable/splash_screen_logo"
         />
-    <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+    <zastraitsolutions.b5calendar.Utils.CustomTextViewNormal
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Compliance Calendar"
