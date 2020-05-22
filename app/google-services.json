@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1043955643142",
+    "firebase_url": "https://b5calendar-fcfe4.firebaseio.com",
+    "project_id": "b5calendar-fcfe4",
+    "storage_bucket": "b5calendar-fcfe4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043955643142:android:83e6ec71c6dbe3592be487",
+        "android_client_info": {
+          "package_name": "zastraitsolutions.b5calendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1043955643142-c7nsnls1dscmm6qkvulhe8p824n6eo08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "zastraitsolutions.b5calendar",
+            "certificate_hash": "177b9c1781c69a02aec6f1197e12f44a30f1b000"
+          }
+        },
+        {
+          "client_id": "1043955643142-jl975q3nnokhifh55tvrgf6dboss78rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtduWqFoMOBJVOql6mOEqIniE7cpi4Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1043955643142-jl975q3nnokhifh55tvrgf6dboss78rv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
