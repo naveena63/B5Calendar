@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/calendar_bg_shape"
-    >
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,18 +15,16 @@
             android:layout_height="match_parent"
             android:layout_margin="0dp"
             android:background="@drawable/calendar_bg_shape"
-            android:orientation="vertical"
-            >
-<zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Notifications"
-    android:textColor="@color/black"
-    android:gravity="center"
-    android:layout_margin="@dimen/margin_10dp"
-    android:textSize="20dp"/>
+            android:orientation="vertical">
 
-
+            <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:gravity="center"
+                android:text="Notifications"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_list"
