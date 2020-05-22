@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
-
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/b5logo"
@@ -19,9 +18,7 @@
         android:supportsRtl="true"
         android:taskAffinity=".string"
         android:theme="@style/AppTheme"
-
         android:usesCleartextTraffic="true">
-
         <activity android:name=".MainActivity" />
         <activity android:name=".Calendar.MyCalendarFormActivity" />
         <activity android:name=".SettingsMenu.AbbreviationsActivity" />
@@ -35,7 +32,8 @@
         <activity android:name=".SettingsMenu.TermsAndCondtionsActivity" />
         <activity android:name=".forgotpaswrd.ForgotPaswrdActivity" />
         <activity android:name=".forgotpaswrd.OtpActivity" />
-        <activity android:name=".forgotpaswrd.ChangePaswordActivity" />  <activity android:name=".RegisterOtpActivity" />
+        <activity android:name=".forgotpaswrd.ChangePaswordActivity" />
+        <activity android:name=".RegisterOtpActivity" />
         <activity android:name=".SettingsMenu.AboutActivity" />
         <activity
             android:name=".BottomNavigtnActivity"
@@ -54,6 +52,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".FormActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

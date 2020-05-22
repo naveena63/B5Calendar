@@ -31,6 +31,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONObject;
 
@@ -53,6 +56,7 @@ TextView forgotPasword;
     SharedPreferences.Editor editor;
     String PREFERENCE = "AGENT";
     ProgressBar progressBar;
+    String deviceToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +97,17 @@ ProgressBar progressBar=new ProgressBar(this);
                     loginIn();
                 }
             }
+        });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                 deviceToken = instanceIdResult.getToken();
+                Log.d("devicetoken", "devicesToken" + deviceToken);
+                prefManager.storeValue(AppConstants.REFRESH_TOKEN, deviceToken);
+                prefManager.setToken(deviceToken);
+                Log.d("token", "token" + prefManager.getToken());
+            }
+            // or directly send it to server
         });
     }
 
@@ -164,6 +179,7 @@ ProgressBar progressBar=new ProgressBar(this);
                 Map<String, String> map = new HashMap<>();
                 map.put("phone_number", phone);
                 map.put("password", paswrd);
+                map.put("device_id",deviceToken);
                 return map;
             }
         };

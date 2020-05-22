@@ -23,6 +23,7 @@ public class AppConstants {
     public static String CHANGEPASWRD = "changepassword1";
     public static String Register_otp = "verifyOtpReg";
     public static String Version = "app_Version";
+    public static String notifictaion = "all_notifications";
 
 
     public static String name="ank";

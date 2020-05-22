@@ -2,7 +2,6 @@ package zastraitsolutions.B5Calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import zastraitsolutions.B5Calendar.Calendar.MyCalendarFragment;
+import zastraitsolutions.B5Calendar.Notification.NotificationFragment;
 import zastraitsolutions.B5Calendar.SettingsMenu.SettingsFragment;
 
 

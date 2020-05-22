@@ -1,21 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="zastraitsolutions.B5Calendar.NotificationFragment">
-<LinearLayout
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/calendar_bg_shape"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:background="@drawable/calendar_bg_shape"
+            android:orientation="vertical"
+            >
+<zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="vertical">
-    <zastraitsolutions.B5Calendar.Utils.CustomTextViewNormal
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/colorAccent"
-         android:textAlignment="center"
-        android:text="No notifications here"/>
+    android:text="Notifications"
+    android:textColor="@color/black"
+    android:gravity="center"
+    android:layout_margin="@dimen/margin_10dp"
+    android:textSize="20dp"/>
 
 
-</LinearLayout>
-</FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp" />
+
+            <TextView
+                android:id="@+id/no_packages_available"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="label_no_packages_available"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

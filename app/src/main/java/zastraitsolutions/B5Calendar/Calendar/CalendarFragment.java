@@ -61,7 +61,7 @@ public class CalendarFragment extends Fragment  {
     View view;
 
     ProgressDialog progressBar;
-    RecyclerViewListener listener;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -99,9 +99,7 @@ public class CalendarFragment extends Fragment  {
         my_recycler_view.addItemDecoration(itemDecor);
         my_recycler_view.addItemDecoration(itemDecor2);
         my_recycler_view.setHasFixedSize(true);
-      /*  RecyclerViewListener listener = (view, position) -> {
-            // Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-        };*/
+
             dateadapter = new DateAdapter(getContext(), allSampleData, type);
             eventADapter = new EventAdapter(getContext(), eventModelList, calendarDate);
 
@@ -113,26 +111,6 @@ public class CalendarFragment extends Fragment  {
                 allSampleData.clear();
                 eventModelList.clear();
 
-//                String dt = "2012-01-04";  // Start date
-//
-//                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//                Calendar c = Calendar.getInstance();
-//                try {
-//
-//                        c.setTime(sdf.parse(next_button));
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-////                output = sdf1.format(c.getTime());
-////                System.out.println("output" + output);
-//
-////                c.add(Calendar.MONTH, 1);
-//                int next_month = c.get(Calendar.MONTH) + 1;
-//                c.add(Calendar.MONTH, next_month);
-//                output = sdf1.format(c.getTime());
-//                System.out.println("output" + output);
-//                getData(output, true);
                 String dt = "2012-01-04";  // Start date
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Calendar c = Calendar.getInstance();
@@ -197,8 +175,6 @@ public class CalendarFragment extends Fragment  {
                         JSONArray jsonArray = jsonObject1.getJSONArray("data");
                         JSONObject json2 = jsonArray.getJSONObject(10);
                         inputdate = json2.getString("event_date");
-                       /* prefManager.storeValue(AppConstants.EEVENTDATE,inputdate);
-                        prefManager.setEventdate(inputdate);*/
                         System.out.println("inputdate" + prefManager.getEventdate());
 
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -345,8 +321,5 @@ public class CalendarFragment extends Fragment  {
         requestQueue.add(stringRequest);
     }
 
- /*   @Override
-    public void onClick(View view, int position) {
-        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-    }*/
+
 }
