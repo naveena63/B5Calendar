@@ -10,7 +10,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -32,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -52,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     CustomTextViewNormal createNewAccount;
 TextView forgotPasword;
     PrefManager prefManager;
-    SharedPreferences sharedpreferences;
-    SharedPreferences.Editor editor;
+    SharedPreferences sharedpreferences,useridpref;
+    SharedPreferences.Editor editor,edit;
     String PREFERENCE = "AGENT";
     ProgressBar progressBar;
     String deviceToken;
@@ -63,7 +66,7 @@ TextView forgotPasword;
         setContentView(R.layout.activity_login);
         //getSupportActionBar().hide();
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/segoeui.ttf");
-ProgressBar progressBar=new ProgressBar(this);
+        ProgressBar progressBar = new ProgressBar(this);
         mobile = findViewById(R.id.loginMobile);
         loginPaswrd = findViewById(R.id.loginPaswrd);
         buttonLogin = findViewById(R.id.buttonLogin);
@@ -75,13 +78,20 @@ ProgressBar progressBar=new ProgressBar(this);
         sharedpreferences = this.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         prefManager = new PrefManager(this);
+
+
+        useridpref = getApplicationContext().getSharedPreferences("USerid", MODE_PRIVATE);
+
+
+
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
-        });  forgotPasword.setOnClickListener(new View.OnClickListener() {
+        });
+        forgotPasword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, ForgotPaswrdActivity.class);
@@ -101,14 +111,26 @@ ProgressBar progressBar=new ProgressBar(this);
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                 deviceToken = instanceIdResult.getToken();
+                deviceToken = instanceIdResult.getToken();
                 Log.d("devicetoken", "devicesToken" + deviceToken);
+
+
                 prefManager.storeValue(AppConstants.REFRESH_TOKEN, deviceToken);
                 prefManager.setToken(deviceToken);
                 Log.d("token", "token" + prefManager.getToken());
             }
             // or directly send it to server
         });
+//        Intent i = new Intent();
+//        i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//        i.addCategory(Intent.CATEGORY_DEFAULT);
+//        i.setData(Uri.parse("package:" + this.getPackageName()));
+//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//        i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//        this.startActivity(i);
+//        Toast.makeText(this, "Please on the notifications to display notifictions on lockscreen", Toast.LENGTH_LONG).show();
+//        }
     }
 
 
@@ -132,6 +154,14 @@ ProgressBar progressBar=new ProgressBar(this);
                         String email = jsonObject1.getString("email");
                         String mobile = jsonObject1.getString("phone_number");
                         String user_id = jsonObject1.getString("id_user");
+
+
+                        Log.i("userid11111","userid"+user_id);
+                        edit = useridpref.edit();
+                        edit.putString("useridnotifications", user_id);
+                        edit.commit();
+
+
                          prefManager.storeValue(AppConstants.USER_ID,user_id);
                         prefManager.setUserid(user_id);
                         Log.i("userid","userid"+prefManager.getUserid());
@@ -168,9 +198,6 @@ ProgressBar progressBar=new ProgressBar(this);
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                      //  setProgressDialog();
-
-
                         Toast.makeText(LoginActivity.this, "No network ", Toast.LENGTH_LONG).show();
                     }
                 }) {

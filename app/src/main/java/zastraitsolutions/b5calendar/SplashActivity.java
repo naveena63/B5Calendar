@@ -3,14 +3,19 @@ package zastraitsolutions.b5calendar;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,12 +62,13 @@ import zastraitsolutions.b5calendar.Utils.PrefManager;
 public class SplashActivity extends AppCompatActivity {
 
     PrefManager prefManager;
-
+    private static final int NOTIFICATION_PERMISSION_CODE = 123;
     private static final String CHANNEL_ID = "4565";
     private NotificationChannel mChannel;
     private NotificationManager notifManager;
     int m = 0;
     String unique_id;
+    int sucess=0;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -71,24 +77,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         prefManager = new PrefManager(this);
-//        FirebaseInstanceId.getInstance().getInstanceId()
-//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-//                        if (!task.isSuccessful()) {
-////To do//
-//                            return;
-//                        }
-//
-//// Get the Instance ID token//
-//                        String token = task.getResult().getToken();
-//                        String msg = getString(R.string.fcm_token, token);
-//                        Log.d("jdcdn", msg);
-//
-//                    }
-//                });
-//
 
+       requestNotificationPermission();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channcel_desc);
@@ -109,16 +99,9 @@ public class SplashActivity extends AppCompatActivity {
                             // Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
                         }
                     });
+
         }
 
-        //this code will be written in splash screen
-//        unique_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-//        Log.d("deviceId", "deviceid" + unique_id);
-//        prefManager.storeValue(AppConstants.DEVICE_ID, unique_id);
-//        prefManager.setDeviceId(unique_id);
-
-
-        //this  token will changes for Every Device this  token  will give to server
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -130,6 +113,68 @@ public class SplashActivity extends AppCompatActivity {
             }
             // or directly send it to server
         });
+
+        runtimehand();
+
+
+
+
+
+        //declartn
+
+
+
+
+
+
+    }
+
+    private void requestNotificationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NOTIFICATION_POLICY) == PackageManager.PERMISSION_GRANTED)
+            return;
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_NOTIFICATION_POLICY)) {
+
+        }
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, NOTIFICATION_PERMISSION_CODE );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        //Checking the request code of our request
+        if (requestCode == NOTIFICATION_PERMISSION_CODE ) {
+
+            //If permission is granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                //Displaying a toast
+                Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG).show();
+
+                runtimehand();
+            } else {
+                //Displaying another toast if permission is not granted
+
+                prefManager = new PrefManager(this);
+                Intent i = new Intent();
+                i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                i.addCategory(Intent.CATEGORY_DEFAULT);
+                i.setData(Uri.parse("package:" + this.getPackageName()));
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                this.startActivity(i);
+                Toast.makeText(this, "Please on the notifications to display notifictions on lockscreen", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }
+
+
+    public void runtimehand(){
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -148,11 +193,10 @@ public class SplashActivity extends AppCompatActivity {
         }, 3000);
 
 
-        prefManager = new PrefManager(this);
 
-        //declartn
 
     }
+
 
 }
 

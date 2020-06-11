@@ -6,6 +6,7 @@ public class NotifictaionModel {
     public String status;
     public String id;
 
+
     public String getMessage() {
         return message;
     }

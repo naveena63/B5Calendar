@@ -37,6 +37,9 @@ public class NotifictaionAdapter extends RecyclerView.Adapter<NotifictaionAdapte
 
         holder.message.setText(singleItem.getMessage());
         holder.title.setText(singleItem.getTitle());
+        String status = singleItem.getStatus();
+
+
 
 
 
@@ -49,7 +52,7 @@ public class NotifictaionAdapter extends RecyclerView.Adapter<NotifictaionAdapte
 
     public class SingleItemRowHolder extends RecyclerView.ViewHolder {
 
-        protected TextView message,title;
+        protected TextView message, title;
 
         public SingleItemRowHolder(View view) {
             super(view);

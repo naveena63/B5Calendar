@@ -1,5 +1,6 @@
 package zastraitsolutions.b5calendar.Notification;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,36 +9,48 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
+import android.opengl.Visibility;
 import android.os.Build;
+import android.os.PowerManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import zastraitsolutions.b5calendar.BottomNavigtnActivity;
 import zastraitsolutions.b5calendar.R;
 import zastraitsolutions.b5calendar.SplashActivity;
+
+import static androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC;
 
 public class MyMessagingService extends FirebaseMessagingService {
     private static final String CHANNEL_ID = "4565";
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        wakeUpScreen();
         showNotificationMessage(remoteMessage.getData().get("title"),remoteMessage.getData().get("message"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channcel_desc);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            channel.getLockscreenVisibility();
             channel.setDescription(description);
             channel.enableLights(true);
             channel.setLightColor(Color.RED);
             channel.enableVibration(true);
+
             channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 
             NotificationManager notificationManager = (NotificationManager) this.getSystemService(this.NOTIFICATION_SERVICE);
@@ -59,7 +72,7 @@ public class MyMessagingService extends FirebaseMessagingService {
     }
 
     public void showNotificationMessage(String title, String message) {
-        Intent intent=new Intent(MyMessagingService.this, SplashActivity.class);
+        Intent intent=new Intent(MyMessagingService.this, BottomNavigtnActivity.class);
         PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,CHANNEL_ID)
@@ -69,7 +82,9 @@ public class MyMessagingService extends FirebaseMessagingService {
                 .setContentTitle(title)
                 .setChannelId(CHANNEL_ID)
                 .setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+.setVisibility(VISIBILITY_PUBLIC)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
@@ -79,5 +94,17 @@ public class MyMessagingService extends FirebaseMessagingService {
             notificationManager.notify(999, notificationBuilder.build());
 
     }
-//
+    /* when your phone is locked screen wakeup method*/
+    private void wakeUpScreen() {
+        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = pm.isScreenOn();
+
+        Log.e("screen on......", "" + isScreenOn);
+        if (isScreenOn == false) {
+            @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "MyLock");
+            wl.acquire(10000);
+            @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wl_cpu = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyCpuLock");
+            wl_cpu.acquire(10000);
+        }
+    }
 }

@@ -7,6 +7,7 @@ public class AppConstants {
     public static final String REFRESH_TOKEN = "token";
     public static final String DEVICE_ID = "devoceid";
     public static final String USER_ID = "userid";
+    public static final String NotificationStatus = "userid";
 
   //  public static String BASE_URL = "https://zastraitsolutions.com/apis1/calendar/rest/index.php/Signup/";
     public static String BASE_URL = "https://eabhiyan.com/apis/calendar/rest/index.php/Signup/";
@@ -23,7 +24,8 @@ public class AppConstants {
     public static String CHANGEPASWRD = "changepassword1";
     public static String Register_otp = "verifyOtpReg";
     public static String Version = "app_Version";
-    public static String notifictaion = "all_notifications";
+    public static String notifictaion = "https://eabhiyan.com/apis/admin/notifications/getNotifications";
+    public static String notifictaionNotstatus= "https://eabhiyan.com/apis/admin/notifications/updatenotStatus";
 
 
     public static String name="ank";

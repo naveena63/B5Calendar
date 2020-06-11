@@ -15,6 +15,7 @@ public class PrefManager {
     private static final String userid = "userid";
     private static final String eventNamedate = "userid";
     private static final String name = "name";
+    private static final String notifictionsttaus = "name";
 
 
     public PrefManager(Context context) {
@@ -107,6 +108,14 @@ public class PrefManager {
 
     public void setToken(String token) {
         editor.putString(TOKEN, token);
+        editor.commit();
+    }
+    public String getNotifictionsttaus() {
+        return pref.getString(notifictionsttaus, "");
+    }
+
+    public void setNotifictionsttaus(String notifictionsttaus) {
+        editor.putString(notifictionsttaus, notifictionsttaus);
         editor.commit();
     }
 

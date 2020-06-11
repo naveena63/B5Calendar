@@ -3,6 +3,7 @@ package zastraitsolutions.b5calendar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class RegistrationActivity extends AppCompatActivity {
     String popUpContents[];
     PopupWindow popupWindowColors;
     PrefManager prefManager;
+    SharedPreferences useridpref;
+    SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,8 @@ public class RegistrationActivity extends AppCompatActivity {
         email.setTypeface(typeface);
         password.setTypeface(typeface);
         cnfrmPaswrd.setTypeface(typeface);
+
+        useridpref = getApplicationContext().getSharedPreferences("USerid", MODE_PRIVATE);
 
         goToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +166,11 @@ public class RegistrationActivity extends AppCompatActivity {
                             if (status.equals("true")) {
                                 JSONObject jsonObject=object.getJSONObject("data");
                                 String id_user=jsonObject.getString("id_user");
+                                edit = useridpref.edit();
+                                edit.putString("useridnotifications", id_user);
+                                edit.commit();
+
+                             //   editor.putString("useridnotifications", id_user);
                                 prefManager.storeValue(AppConstants.USER_ID,id_user);
                                 prefManager.setUserid(id_user);
                                 Toast.makeText(RegistrationActivity.this, "Please verify mobilenumber before register your account", Toast.LENGTH_SHORT).show();

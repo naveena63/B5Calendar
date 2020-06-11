@@ -59,7 +59,6 @@ public class CalendarFragment extends Fragment  {
     TextView tv_month, tv_year;
     PrefManager prefManager;
     View view;
-
     ProgressDialog progressBar;
 
 
