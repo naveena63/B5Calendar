@@ -117,16 +117,6 @@ public class SplashActivity extends AppCompatActivity {
         runtimehand();
 
 
-
-
-
-        //declartn
-
-
-
-
-
-
     }
 
     private void requestNotificationPermission() {

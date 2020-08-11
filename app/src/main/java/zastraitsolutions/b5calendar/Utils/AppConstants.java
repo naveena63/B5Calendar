@@ -24,9 +24,9 @@ public class AppConstants {
     public static String CHANGEPASWRD = "changepassword1";
     public static String Register_otp = "verifyOtpReg";
     public static String Version = "app_Version";
-    public static String notifictaion = "https://eabhiyan.com/apis/admin/notifications/getNotifications";
+        public static String notifictaion = "https://eabhiyan.com/apis/admin/notifications/getNotifications";
     public static String notifictaionNotstatus= "https://eabhiyan.com/apis/admin/notifications/updatenotStatus";
 
 
-    public static String name="ank";
+
 }

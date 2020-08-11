@@ -82,7 +82,7 @@ public class MyMessagingService extends FirebaseMessagingService {
                 .setContentTitle(title)
                 .setChannelId(CHANNEL_ID)
                 .setAutoCancel(true)
-.setVisibility(VISIBILITY_PUBLIC)
+                .setVisibility(VISIBILITY_PUBLIC)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
